@@ -76,9 +76,9 @@ public extension UIDevice {
 	}
 
 	var wifi: (SSID: String, BSSID: String) {
-		var SSID = ""
-		var BSSID = ""
-		if let interfaces: CFArray! = CNCopySupportedInterfaces() {
+		var SSID = "noWifi"
+		var BSSID = "noWifi"
+		if let interfaces: CFArray = CNCopySupportedInterfaces() {
 			for i in 0 ..< CFArrayGetCount(interfaces) {
 				let interfaceName: UnsafePointer<Void> = CFArrayGetValueAtIndex(interfaces, i)
 				let rec = unsafeBitCast(interfaceName, AnyObject.self)
