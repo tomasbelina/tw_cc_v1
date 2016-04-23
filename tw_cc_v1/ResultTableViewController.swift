@@ -25,12 +25,15 @@ class ResultTableViewController: UIViewController {
 		view.addSubview(tableView)
 		tableView.dataSource = self
 		tableView.delegate = self
+        tableView.layoutMargins = UIEdgeInsetsZero
+        tableView.separatorInset = UIEdgeInsetsZero
 		tableView.registerClass(ResultTableViewCell.self, forCellReuseIdentifier: cellId)
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 30
 		tableView.snp_makeConstraints { make in
 			make.edges.equalTo(view)
 		}
+        
 		self.tableView = tableView
 	}
 
@@ -50,7 +53,9 @@ extension ResultTableViewController: UITableViewDataSource {
 		let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ResultTableViewCell
 
 		let key = Array(info!.keys)[indexPath.row]
-
+        
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
 		cell.name.text = key + ":"
 		cell.value.text = info![key]
 
